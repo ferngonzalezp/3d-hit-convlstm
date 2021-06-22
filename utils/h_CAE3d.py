@@ -127,8 +127,7 @@ class h_cae(nn.Module):
 class CAE(pl.LightningModule):
   def __init__(self,hparams):
     super().__init__()
-    self.hparams = hparams
-    self.save_hyperparameters()
+    self.save_hyperparameters(hparams)
     self.model = h_cae(self.hparams.latent_features, self.hparams.input_dim, self.hparams.output_dim, self.hparams.modes)
     self.model.apply(weights_init)
 

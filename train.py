@@ -13,11 +13,10 @@ def main(hparams):
     verbose=True,
     monitor='val_loss',
     mode='min',
-    save_last=True,
-    prefix='')
+    save_last=True)
     model = convttlstm(hparams)
     dm = hit_dm(hparams)
-    trainer = Trainer.from_argparse_args(hparams,checkpoint_callback=checkpoint_callback,
+    trainer = Trainer.from_argparse_args(hparams,callbacks=checkpoint_callback,
                          auto_select_gpus = True,
                          progress_bar_refresh_rate=1)   
     trainer.fit(model, datamodule = dm)
